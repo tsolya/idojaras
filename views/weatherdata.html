@@ -1,1 +1,34 @@
-<h3>Időjárási adatok </h3>
+<h3 style="padding:10px 15px 0px 15px">Időjárási adatok felvétele </h3>
+
+<!--Űrlap-->
+<div class="row">
+    <div class="form-floating mb-3 col-12 col-lg-4" >
+        <input type="date" class="form-control" style="width:60vw; margin-left: 15px;" id="dateField" max="" placeholder="">
+        <label for="dateField" style=" margin-left: 25px;">Dátum</label>
+
+</div>
+<div class="form-floating mb-3 col-12 col-lg-4" >
+    <input type="text" class="form-control" style="width:60vw; margin-left: 15px;" id="minField" max="" placeholder="">
+    <label for="minField" style=" margin-left: 25px;">Minimum hőmérséklet</label>
+
+</div>
+<div class="form-floating mb-3 col-12 col-lg-4" >
+    <input type="text" class="form-control" style="width:60vw; margin-left: 15px;" id="maxField" max="" placeholder="">
+    <label for="maxField" style=" margin-left: 25px;">Maximum hőmérséklet</label>
+
+</div>
+    <div class="form-floating mb-3 col-12 col-lg-4">
+        <select name="weatherField" id="weatherField" class="form-control" style="width:60vw; margin-left: 15px; " >
+            <option value="">sdad</option>
+            <option value="">sdad</option>
+            <option value="">sdad</option>
+        </select> 
+        <label for="weatherField" style=" margin-left: 25px;">Időjárás</label>
+</div>
+    <div class="col-12 col-lg-4">
+    <button class="btn btn-outline-primary" style="margin: 0px 0px 10px 15px;" onclick="Add()" id="addBtn">Hozzáadás</button>
+    <button class="btn btn-outline-primary" style="margin: 0px 0px 10px 15px;" hidden onclick="Update()" id="updBtn">Módosítás</button>
+    <button class="btn btn-outline-primary" style="margin: 0px 0px 10px 15px;" hidden onclick="Del()" id="delBtn">Törlés</button>
+    <button class="btn btn-outline-primary" style="margin: 0px 0px 10px 15px;" hidden  onclick="Cancel()" id="cancelBtn">Mégsem</button>
+    </div>
+</div>

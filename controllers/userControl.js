@@ -1,7 +1,12 @@
 const passRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
 const emailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const API = 'http://localhost:3000'
-
+let menu = document.getElementById("menu")
+let menu1 = document.getElementById("menu1")
+let menu2 = document.getElementById("menu2")
+let menu3 = document.getElementById("menu3")
+let menu4 = document.getElementById("menu4")
+let menu5 = document.getElementById("menu5")
 //----------------------------------------
 //Új felhasználó adatainak felvétele
 //----------------------------------------
@@ -59,6 +64,8 @@ async function Registration(){
             confirmpassField.value = ''
             ShowAlert("Sikeres regisztráció!", "alert-success")
         }
+        
+
     }
     catch(err){
         console.log('Hiba történt: ', err)
@@ -69,7 +76,7 @@ async function Registration(){
 //Bejelentkeztetés
 //----------------------------------------
 
-
+let men
 async function Login() {
     let passfield = document.getElementById('passField')
     let emailField = document.getElementById('emailField')
@@ -98,11 +105,13 @@ async function Login() {
         })
 
         ShowAlert("Sikeres belépés!","alert-success")
+        
+       
         user = await res.json()
 
         if(user.id != undefined){
             loggedUser = user;
-
+            
         }
         
         
@@ -110,10 +119,9 @@ async function Login() {
             ShowAlert("Hibás belépési adatok!", "alert-danger")
             return
         }
-       
+        
         sessionStorage.setItem('loggedUser', JSON.stringify(loggedUser))
-        await Render("weatherdata")
-        getLoggedUser()
+        await Render("weatherdata") 
        
     }
     catch(err){
@@ -122,6 +130,18 @@ async function Login() {
     
 }
 
+
+
+
+//----------------------------------------
+//Felhasználó kijelentkeztetése
+//----------------------------------------
+
+function Logout(){
+    sessionStorage.removeItem('loggedUser')
+    getLoggedUser()
+    Render("login")
+}
 
 //----------------------------------------
 //felugró ablak

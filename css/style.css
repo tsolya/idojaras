@@ -1,4 +1,6 @@
-
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 .container{
  padding-left: 0;
  padding-right: 0;
@@ -7,6 +9,7 @@
  height: fit-content;
  border-radius: 10px;
  border:1px solid var(--bs-secondary);
+ box-shadow: 2px 2px 5px black;
 
 }
 .navbar{
@@ -24,4 +27,5 @@ footer p{
 footer{
     padding: 15px 0;
     border-top:1px solid var(--bs-secondary);
+    font-family: none;
 }
