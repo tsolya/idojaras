@@ -113,6 +113,10 @@ async function Render(view){
         case 'profile': 
         getProfile()
         break
+        case 'weatherdata':
+        await setDate()
+        
+        break
     } 
    }
 
