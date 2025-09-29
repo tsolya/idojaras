@@ -76,7 +76,7 @@ async function Registration(){
 //Bejelentkeztetés
 //----------------------------------------
 
-let men
+
 async function Login() {
     let passfield = document.getElementById('passField')
     let emailField = document.getElementById('emailField')
@@ -122,17 +122,132 @@ async function Login() {
         
         sessionStorage.setItem('loggedUser', JSON.stringify(loggedUser))
         await Render("weatherdata") 
-       
+        
+        getLoggedUser()
     }
     catch(err){
         console.log("Hiba!", err)
     }
     
 }
+//----------------------------------------
+//Profil lekérése
+//----------------------------------------
+async function getProfile(){
+    let emailField = document.getElementById('emailField')
+    let namefield = document.getElementById('nameField')
+    
+    const loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'))
 
 
+    try {
+        const res = await fetch(`${API}/users/${loggedUser.id}`)
+        if (!res.ok) {
+            ShowAlert("Nem sikerült lekérni a profilt!", "alert-danger")
+            return
+        }
+        const user = await res.json()
+        emailField.value = user.email
+        namefield.value = user.name
+    } catch (err) {
+        ShowAlert("Hiba történt a profil lekérésekor!", "alert-danger")
+        console.log("Hiba!", err)
+    }
+
+}
+
+//----------------------------------------
+//Profil update
+//----------------------------------------
+
+async function UpdateProfile(){
+        let emailField = document.getElementById('emailField')
+        let nameField = document.getElementById('nameField')
+        if(!emailRegExp.test(emailField.value)){
+            ShowAlert("A megadott email cím nem megfelelő ", "alert-danger")
+            return
+        }
+        try {
+            
+        const loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'))
+        const res = await fetch(`${API}/users/${loggedUser.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: emailField.value,
+                name: nameField.value
+            })
+        })
+        if (!res.ok) {
+            const data = await res.json()
+            console.log(data.msg)
+            ShowAlert(data.msg, "alert-danger")
+            return
+        }
+        const updatedUser = await res.json()
+        sessionStorage.setItem('loggedUser', JSON.stringify(updatedUser.user))
+        ShowAlert("Profil frissítve!", "alert-success")
+    } catch (err) {
+        ShowAlert("Hiba történt!", "alert-danger")
+        console.log("Hiba!", err)
+    }
+
+}
 
 
+//----------------------------------------
+//jelszó módosítása
+//----------------------------------------
+
+
+async function ChangePass(){
+    let OPField = document.getElementById('oldpassField')
+    let NPField = document.getElementById('newpassField')
+    let CNPField = document.getElementById('cnewconfirmpassField')
+
+    if(OPField.value == "" || NPField.value == "" || CNPField.value == ""){
+        ShowAlert("Nem adtál meg minden adatot!", "alert-danger")
+        return
+    }
+    if(NPField.value != CNPField.value){
+        ShowAlert("Az új jelszavak nem egyeznek!", "alert-danger")
+        return
+    }
+    if(!passRegExp.test(NPField.value)){
+        ShowAlert("Az új jelszó nem elég biztonságos!", "alert-danger")
+        return
+    }
+    try {
+        const loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'))
+        const res = await fetch(`${API}/users/changepass/${loggedUser.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                oldpass: OPField.value,
+                newpass: NPField.value
+            })
+        })
+        if (!res.ok) {
+            const data = await res.json()
+            console.log(data.msg)
+            ShowAlert(data.msg, "alert-danger")
+            return
+        }
+        OPField.value = ''
+        NPField.value = ''
+        CNPField.value = ''
+        const updatedUser = await res.json()
+        sessionStorage.setItem('loggedUser', JSON.stringify(updatedUser.user))
+        ShowAlert("Jelszó sikeresen megváltoztatva!", "alert-success")
+    } catch (err) {
+        ShowAlert("Hiba történt a jelszó megváltoztatásakor!", "alert-danger")
+        console.log("Hiba!", err)
+    }
+}
 //----------------------------------------
 //Felhasználó kijelentkeztetése
 //----------------------------------------

@@ -1,2 +1,30 @@
 <h3 style="padding:10px 15px 0px 15px">Profil</h3>
+<div class="alert hide" id="alertReg" role="alert"></div>
+<p style="padding:10px 15px 0px 15px">Alapinformációk módosítása: </p>
+<div class="form-floating mb-3">
+    <input type="text" class="form-control" id="nameField"style="width:60vw; margin-left: 15px;" placeholder="">
+    <label for="nameField" style=" margin-left: 25px;">Név</label>
+</div>
+<div class="form-floating mb-3">
+    <input type="email" class="form-control" id="emailField"style="width:60vw; margin-left: 15px;" placeholder="">
+    <label for="emailField" style=" margin-left: 25px;">Email cím</label>
+</div>
+    <button class="btn btn-outline-primary"style="margin: 0px 0px 10px 15px;"onclick="UpdateProfile()" id="updateProfileBtn">Adatok módosítása</button>
 
+
+<p style="padding:10px 15px 0px 15px">Jelszó módosítása: </p>
+<div class="form-floating mb-3">
+    <input type="password" class="form-control" id="oldpassField"style="width:60vw; margin-left: 15px;" placeholder="">
+    <label for="oldpassField" style=" margin-left: 25px;">Régi jelszó</label>
+</div>
+<div class="form-floating mb-3">
+    <input type="password" class="form-control" id="newpassField"style="width:60vw; margin-left: 15px;" placeholder="">
+    <label for="newpassField" style=" margin-left: 25px;">Új jelszó</label>
+</div>
+<div class="form-floating mb-3">
+    <input type="password" class="form-control" id="cnewconfirmpassField"style="width:60vw; margin-left: 15px;" placeholder="">
+    <label for="cnewconfirmpassField" style=" margin-left: 25px;">Új jelszó megerősítése</label>
+</div>
+
+
+<button class="btn btn-outline-primary" onclick="ChangePass()" id="changePassBtn" style="margin: 0px 0px 10px 15px;">Jelszó módosítása</button>

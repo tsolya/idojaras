@@ -55,26 +55,34 @@ function setThemeBtn(theme){
         darkBtn.classList.remove('bi-moon-stars')
     }
 }
+//------------------------------------------
+//Bejelentkezett user lekérése és menüpontok eltüntetése fapados módon
+//------------------------------------------
+
 async function getLoggedUser(){
     if(sessionStorage.getItem('loggedUser')){
         loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'))
-        menu.classList.add="hide"
-        menu1.classList.add="hide"
-        menu2.classList.remove="hide"
-        menu3.classList.remove="hide"
-        menu4.classList.remove="hide"
-        menu5.classList.remove="hide"
+        
+        menu.classList.add("d-none")
+        menu1.classList.add("d-none")
+        menu2.classList.remove("d-none")
+        menu3.classList.remove("d-none")
+        menu4.classList.remove("d-none")
+        menu5.classList.remove("d-none")
+        menu6.classList.remove("d-none")
+       
         
         await Render('weatherdata')
     }
     else{
         loggedUser = null
-        menu.classList.remove="hide"
-        menu1.classList.remove="hide"
-        menu2.classList.add="hide"
-        menu3.classList.add="hide"
-        menu4.classList.add="hide"
-        menu5.classList.add="hide"
+        menu.classList.remove("d-none")
+        menu1.classList.remove("d-none")
+        menu2.classList.add("d-none")
+        menu3.classList.add("d-none")
+        menu4.classList.add("d-none")
+        menu5.classList.add("d-none")
+        menu6.classList.add("d-none")
         
         await Render('login')
     }
@@ -100,7 +108,12 @@ company.innerHTML=Company;
 //------------------------------------------
 
 async function Render(view){
-    main.innerHTML =await (await fetch(`views/${view}.html`)).text() 
+    main.innerHTML =await (await fetch(`views/${view}.html`)).text()
+    switch(view){
+        case 'profile': 
+        getProfile()
+        break
+    } 
    }
 
 
