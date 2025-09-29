@@ -3,7 +3,9 @@
 
 <div class="row">
     <div class="form-floating mb-3 col-12 col-lg-4" >
-        <input type="date" class="form-control" style="width:60vw; margin-left: 15px;" id="dateField" max="" placeholder="">
+
+        <input type="date" class="form-control"  style="width:60vw; margin-left: 15px;" id="dateField" min="" placeholder="">
+        
         <label for="dateField" style=" margin-left: 25px;">Dátum</label>
 
 </div>
@@ -15,15 +17,19 @@
 <div class="form-floating mb-3 col-12 col-lg-4" >
     <input type="text" class="form-control" style="width:60vw; margin-left: 15px;" id="maxField" max="" placeholder="">
     <label for="maxField" style=" margin-left: 25px;">Maximum hőmérséklet</label>
+
     <div class="alert hide" id="alertReg" role="alert">
 </div>
     <div class="form-floating mb-3 col-12 col-lg-4">
         <select name="weatherField" id="weatherField" class="form-control" style="width:60vw; margin-left: 15px; " >
-            <option value="">sdad</option>
-            <option value="">sdad</option>
-            <option value="">sdad</option>
+            <option value="rainy">Esős</option>
+            <option value="storm">Zivatar</option>
+            <option value="foggy">Ködös</option>
+            <option value="sunny">Napsütés</option>
+            <option value="snowy">Hóesés</option>
+            <option value="cloudy">Felhős</option>
         </select> 
-        <label for="weatherField" style=" margin-left: 25px;">Időjárás</label>
+        <label for="weatherField" style=" margin-left: 25px;">Időjárás fajta</label>
 </div>
     <div class="col-12 col-lg-4">
     <button class="btn btn-outline-primary" style="margin: 0px 0px 10px 15px;" onclick="Add()" id="addBtn">Hozzáadás</button>
@@ -32,3 +38,22 @@
     <button class="btn btn-outline-primary" style="margin: 0px 0px 10px 15px;" hidden  onclick="Cancel()" id="cancelBtn">Mégsem</button>
     </div>
 </div>
+
+
+
+<table class="table" style="width: 70vw; margin-left: 15px;">
+    <thead>
+        <tr>
+            <th class="text-center">#</th>
+            <th class="text-start">Dátum</th>
+            <th class="text-end">Időjárás</th>
+            <th class="text-end">Min hőfok</th>
+            <th class="text-end">Max hőfok</th>
+            <th class="text-end">Műveletek</th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+        <!--Ide jönnek az adatok dinamikusan-->
+    </tbody>
+    
+</table>
