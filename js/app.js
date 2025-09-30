@@ -115,7 +115,7 @@ async function Render(view){
         break
         case 'weatherdata':
         await setDate()
-        
+        await FillTable()
         break
     } 
    }
