@@ -118,8 +118,11 @@ async function Render(view){
         await FillTable()
         break
         case 'chart':
-        
-        break
+            
+            break
+        case 'calendar':
+            await getCalendarData()
+            await initCalendar()
     } 
    }
 
