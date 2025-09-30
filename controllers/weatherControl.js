@@ -113,7 +113,7 @@ async function FillTable() {
         if(res.status == 200){
             for (let i = 0; i < weathers.length; i++) {
                 
-                let index = i
+                
                 
                 
                 let td1 = document.createElement("td")
@@ -145,8 +145,8 @@ async function FillTable() {
                 bt1.innerHTML = '<i class="bi bi-pencil-fill"></i>'
                 bt2.innerHTML = '<i class="bi bi-trash-fill"></i>'
 
-                bt1.setAttribute('onClick', `editWeather(${index+1})`)
-                bt2.setAttribute('onClick',`Delete(${index+1})`)
+                bt1.setAttribute('onClick', `editWeather(${weathers[i].id})`)
+                bt2.setAttribute('onClick',`Delete(${weathers[i].id})`)
 
                 td1.innerHTML=""
                 td4.innerHTML=weathers[i].min +"C°"
@@ -369,12 +369,12 @@ async function FillTable() {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        id: weatheridid,
+                        id: weatherid,
                         uid: loggedUser.id,
-                        min: minField.value,
-                        max: maxField.value,
-                        type: select.value,
-                        date: dateField.value.toString()
+                        min:selectedWeather.min,
+                        max: selectedWeather.max,
+                        type: selectedWeather.type,
+                        date: selectedWeather.date
                     })
                     })
                     const data = await res.json()
