@@ -117,6 +117,9 @@ async function Render(view){
         await setDate()
         await FillTable()
         break
+        case 'chart':
+        
+        break
     } 
    }
 

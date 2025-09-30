@@ -193,7 +193,7 @@ async function FillTable() {
         console.log("Hiba történt!", err)
     }
     }
-    //adatok ertekelese
+    //adatok szerkeztese
     async function editWeather(index){
         let dateField=document.getElementById("dateField")
         let minField=document.getElementById("minField")
@@ -209,7 +209,7 @@ async function FillTable() {
         selectedWeather = weathers[index-1]
         
     }
-
+ //adatok torlese
     async function Delete(index){
         let dateField=document.getElementById("dateField")
         let minField=document.getElementById("minField")
@@ -244,6 +244,7 @@ async function FillTable() {
         }
     }
     }
+    //button elrejtes/megjelenes
     function toggleEditMode(mode){
         let addBtn = document.getElementById("addBtn")
         let updBtn = document.getElementById("updBtn")
@@ -262,6 +263,7 @@ async function FillTable() {
             cancelBtn.classList.add("d-none")
         }
     }
+    //mégse gomb
     function Cancel(){
         toggleEditMode(false)
         let dateField = document.getElementById("dateField")
@@ -280,7 +282,7 @@ async function FillTable() {
 
 
 
-
+ //adatok frissitése
     async function Update(){
         let dateOccupied = false
         let weatherid = 0
