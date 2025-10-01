@@ -111,7 +111,7 @@ async function Render(view){
     main.innerHTML =await (await fetch(`views/${view}.html`)).text()
     switch(view){
         case 'profile': 
-        getProfile()
+        await GetUserData()
         break
         case 'weatherdata':
         await setDate()

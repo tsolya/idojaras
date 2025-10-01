@@ -72,6 +72,23 @@ async function Registration(){
     }
 }
 
+
+async function GetUserData(){
+    let name = document.getElementById("nameField")
+    let emaildat = document.getElementById("emailField")
+ 
+    try{
+        const res = await fetch(`${API}/users/${loggedUser.id}`)
+        const data = await res.json()
+ 
+        name.value = data.name
+        emaildat.value = data.email
+    }
+    catch(err){
+        console.log("Hiba!", err)
+    }
+}
+ 
 //----------------------------------------
 //Bejelentkeztetés
 //----------------------------------------
