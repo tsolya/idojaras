@@ -114,7 +114,7 @@ async function FillTable() {
             for (let i = 0; i < weathers.length; i++) {
                 
                 
-                
+                let index=i;
                 
                 let td1 = document.createElement("td")
                 let td2 = document.createElement("td")
@@ -145,7 +145,7 @@ async function FillTable() {
                 bt1.innerHTML = '<i class="bi bi-pencil-fill"></i>'
                 bt2.innerHTML = '<i class="bi bi-trash-fill"></i>'
 
-                bt1.setAttribute('onClick', `editWeather(${weathers[i].id})`)
+                bt1.setAttribute('onClick', `editWeather(${index+1})`)
                 bt2.setAttribute('onClick',`Delete(${weathers[i].id})`)
 
                 td1.innerHTML=""
@@ -363,6 +363,31 @@ async function FillTable() {
             }
             else{
                 try{
+                    const res = await fetch(`${API}/weathers/${selectedWeather.id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                       
+                        })
+                        let data = await res.json()
+                        if (res.status == 200){
+                            dateField.value = ''
+                            minField.value=''
+                            maxField.value=''
+                            select.value=''
+                            Cancel()
+                            await FillTable()
+                        }
+                        else{
+                            ShowAlert("A manoba",'alert-danger')
+                        }
+                }
+                catch(err){
+                    ShowAlert("A manoba^2",'alert-danger')
+                    console.log(err)
+                }
+                try{
                 const res = await fetch(`${API}/weathers/${weatherid}`, {
                     method: 'PATCH',
                     headers: {
@@ -395,30 +420,6 @@ async function FillTable() {
                     console.log(err)
                 }
             }
-            try{
-                const res = await fetch(`${API}/weathers/${selectedWeather.id}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                   
-                    })
-                    let data = await res.json()
-                    if (res.status == 200){
-                        dateField.value = ''
-                        minField.value=''
-                        maxField.value=''
-                        select.value=''
-                        Cancel()
-                        await FillTable()
-                    }
-                    else{
-                        ShowAlert("A manoba",'alert-danger')
-                    }
-            }
-            catch(err){
-                ShowAlert("A manoba^2",'alert-danger')
-                console.log(err)
-            }
+            
         }
     }
